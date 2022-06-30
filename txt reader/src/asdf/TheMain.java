@@ -23,7 +23,7 @@ import java.awt.Color;
 
 public class TheMain extends JFrame {
 
-	private JPanel contentPane;
+	 private JPanel contentPane;
 	private JTextField loc;
 
 	public static void main(String[] args) {
@@ -120,25 +120,8 @@ public class TheMain extends JFrame {
 		JButton btnRead = new JButton("Read");
 		btnRead.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String path= loc.getText();
+				ans.setText(txt(loc.getText()));
 				
-				try {
-					// test
-					//path = "C:\\Users\\PC\\Desktop\\9à 4.txt";
-					
-					FileReader fr = new FileReader(path);
-					BufferedReader br=new BufferedReader(fr);
-					String text="";
-					String s;
-					 while ((s=br.readLine()) != null) {
-					     text+=s+"\n";
-					  }
-					ans.setText(text);
-					br.close();
-				} catch (Exception e1 ) {
-					e1.printStackTrace();
-					System.out.println("error reading");
-				}
 				
 				
 				
@@ -150,11 +133,11 @@ public class TheMain extends JFrame {
 		contentPane.add(btnRead);
 		
 		//lbl example
-		JLabel lblexample = new JLabel("Example: C:\\\\Users\\\\PC\\\\Desktop\\\\9a 4.txt");
+		JLabel lblexample = new JLabel("Example: C:\\Users\\PC\\Desktop\\file.txt");
 		
 		lblexample.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblexample.setBounds(125, 51, 299, 14);
-		contentPane.add(lblexample);
+		contentPane.add(lblexample);	
 		
 	//design
 		//orange
@@ -187,9 +170,32 @@ public class TheMain extends JFrame {
 		ans.setForeground(color);
 		ans.setBackground(Color.DARK_GRAY);
 		ans.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-		
-
 	
 	}
+	
+	public static String txt(String path) {
+		try {
+			// test
+			//path = "C:\\Users\\PC\\Desktop\\9à 4.txt";
+			
+			FileReader fr = new FileReader(path);
+			BufferedReader br=new BufferedReader(fr);
+			String text="";
+			String s;
+			 while ((s=br.readLine()) != null) {
+			     text+=s+"\n";
+			  }
+			
+			br.close();
+			return text;
+		} catch (Exception e1 ) {
+			e1.printStackTrace();
+			System.out.println("error reading");
+			return "error reading txt";
+		}
+	}
+	
+	
+	
+	
 }
